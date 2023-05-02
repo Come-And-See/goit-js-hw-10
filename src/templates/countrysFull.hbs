@@ -9,7 +9,9 @@
     <ul class='countryUl'>
       <li><b>Capital</b>: {{capital}}</li>
       <li><b>Population</b>: {{population}}</li>
-      <li><b>Languages</b>:{{#each languages}} {{this}}, {{/each}}</li>
+      <li><b>Languages</b>:{{#each languages}} {{this}}<span
+            class='comma'
+          ></span> {{/each}}</li>
     </ul></div>
 
 {{/each}}

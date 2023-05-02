@@ -23,11 +23,14 @@ function onTEST(e) {
   }
 
   API.fetchCountries(`${e.target.value.trim()}`).then(country => {
-    if (country.length > 10) {
+    console.log(country.status);
+    if (country.status === 404) {
+      onErrorCountry();
+      return;
+    } else if (country.length > 10) {
       onAlert();
       return;
-    }
-    if (country.length !== 1) {
+    } else if (country.length !== 1) {
       onCountryAll(country);
       return;
     }
@@ -52,4 +55,9 @@ function onCountryOne(country) {
 
 function onClearHTML() {
   refs.countryInfo.innerHTML = '';
+}
+
+function onErrorCountry() {
+  Notify.failure('Oops, there is no country with that name');
+  onClearHTML();
 }
