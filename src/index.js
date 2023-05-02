@@ -22,19 +22,22 @@ function onTEST(e) {
     return;
   }
 
-  API.fetchCountries(`${e.target.value.trim()}`).then(country => {
-    if (country.status === 404) {
+  API.fetchCountries(`${e.target.value.trim()}`)
+    .then(country => {
+      if (country.status === 404) {
+        throw 'error';
+      } else if (country.length > 10) {
+        onAlert();
+        return;
+      } else if (country.length !== 1) {
+        onCountryAll(country);
+        return;
+      }
+      onCountryOne(country);
+    })
+    .catch(() => {
       onErrorCountry();
-      return;
-    } else if (country.length > 10) {
-      onAlert();
-      return;
-    } else if (country.length !== 1) {
-      onCountryAll(country);
-      return;
-    }
-    onCountryOne(country);
-  });
+    });
 }
 
 function onAlert() {
