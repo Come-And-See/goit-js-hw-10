@@ -3,7 +3,7 @@ import API from './js/fetchCountries';
 import { Notify } from 'notiflix';
 
 import countrysFunction from './templates/countrys.hbs';
-import countrysFunction2 from './templates/countrysFull.hbs';
+import countrysFunctionFull from './templates/countrysFull.hbs';
 
 const debounce = require('lodash.debounce');
 
@@ -23,7 +23,6 @@ function onTEST(e) {
   }
 
   API.fetchCountries(`${e.target.value.trim()}`).then(country => {
-    console.log(country.status);
     if (country.status === 404) {
       onErrorCountry();
       return;
@@ -49,7 +48,7 @@ function onCountryAll(country) {
 }
 
 function onCountryOne(country) {
-  const CountryOne = countrysFunction2(country);
+  const CountryOne = countrysFunctionFull(country);
   refs.countryInfo.innerHTML = CountryOne;
 }
 
