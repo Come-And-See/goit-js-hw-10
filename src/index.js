@@ -18,8 +18,7 @@ refs.input.addEventListener('input', debounce(onTEST, DEBOUNCE_DELAY));
 
 function onTEST(e) {
   if (e.target.value.trim().length === 0) {
-    onClearHTML();
-    return;
+    return onClearHTML();
   }
 
   API.fetchCountries(`${e.target.value.trim()}`)
