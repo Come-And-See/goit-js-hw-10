@@ -24,14 +24,10 @@ function onTEST(e) {
 
   API.fetchCountries(`${e.target.value.trim()}`)
     .then(country => {
-      if (country.status === 404) {
-        throw 'error';
-      } else if (country.length > 10) {
-        onAlert();
-        return;
+      if (country.length > 10) {
+        return onAlert();
       } else if (country.length !== 1) {
-        onCountryAll(country);
-        return;
+        return onCountryAll(country);
       }
       onCountryOne(country);
     })
@@ -47,12 +43,13 @@ function onAlert() {
 
 function onCountryAll(country) {
   const CountryAll = countrysFunction(country);
-  refs.countryInfo.innerHTML = CountryAll;
+  refs.countryInfo.insertAdjacentHTML('beforeend', CountryAll);
 }
 
 function onCountryOne(country) {
+  onClearHTML();
   const CountryOne = countrysFunctionFull(country);
-  refs.countryInfo.innerHTML = CountryOne;
+  refs.countryInfo.insertAdjacentHTML('beforeend', CountryOne);
 }
 
 function onClearHTML() {
