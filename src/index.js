@@ -41,6 +41,7 @@ function onAlert() {
 }
 
 function onCountryAll(country) {
+  onClearHTML();
   const CountryAll = countrysFunction(country);
   refs.countryInfo.insertAdjacentHTML('beforeend', CountryAll);
 }
